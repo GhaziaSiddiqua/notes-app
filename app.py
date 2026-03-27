@@ -1,3 +1,16 @@
+import os
+
+def init_db():
+    conn = sqlite3.connect("database.db")
+    c = conn.cursor()
+    c.execute("CREATE TABLE IF NOT EXISTS users (username TEXT, password TEXT)")
+    c.execute("CREATE TABLE IF NOT EXISTS notes (user TEXT, content TEXT)")
+    conn.commit()
+    conn.close()
+
+# Run once when app starts
+if not os.path.exists("database.db"):
+    init_db()
 from flask import Flask, render_template, request, redirect, session
 import sqlite3
 
