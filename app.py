@@ -1,4 +1,9 @@
+from flask import Flask, render_template, request, redirect, session
+import sqlite3
 import os
+
+app = Flask(__name__)
+app.secret_key = "secret"
 
 def init_db():
     conn = sqlite3.connect("database.db")
@@ -8,12 +13,9 @@ def init_db():
     conn.commit()
     conn.close()
 
-# Run once when app starts
+# 👇 THIS should come AFTER import sqlite3
 if not os.path.exists("database.db"):
     init_db()
-from flask import Flask, render_template, request, redirect, session
-import sqlite3
-
 app = Flask(__name__)
 app.secret_key = "secret"
 
