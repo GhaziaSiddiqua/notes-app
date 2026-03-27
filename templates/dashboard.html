@@ -1,0 +1,16 @@
+<h2>Welcome {{ user }} 👋</h2>
+
+<form method="POST">
+  <input name="note" placeholder="Write a note..." required>
+  <button>Add</button>
+</form>
+
+<h3>Your Notes:</h3>
+
+<ul>
+  {% for note in notes %}
+    <li>{{ note[0] }}</li>
+  {% endfor %}
+</ul>
+
+<a href="/logout">Logout</a>
